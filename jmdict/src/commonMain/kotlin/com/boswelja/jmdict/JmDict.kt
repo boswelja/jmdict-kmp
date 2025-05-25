@@ -25,7 +25,7 @@ suspend fun streamJmDict(): Sequence<Entry> {
     val compressedBytes = withContext(Dispatchers.IO) {
         Res.readBytes("files/jmdict.xml")
     }
-    return GZIPInputStream(compressedBytes.inputStream()).bufferedReader()
+    return GZIPInputStream(compressedBytes).bufferedReader()
         .lineSequence()
         .asEntrySequence()
 }
